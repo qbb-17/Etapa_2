@@ -3,7 +3,6 @@ from unicodedata import numeric
 import streamlit as st
 import pandas as pd
 import numpy as np
-import plotly.express as px
 import matplotlib.pyplot as plt
 
 #--- IMPORTAMOS LOS DATOS ---#
@@ -138,28 +137,6 @@ if graf1:
     st.pyplot(fig)
     st.markdown("_")
 
-DATA_URL = ('clean_airbnb (1).csv')
-DATE_COLUMN = 'neighbourhood'
-LAT = 'latitude'
-LON = 'longitude'
-
-st.title("Ubicaciones de las casas")
-st.header("Casas") 
-
-map_data = pd.DataFrame(
-    np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],
-    columns=['latitude', 'longitude'])
-
-st.map(map_data)
-
-#Creamos el mapa 
-#LAT = (df["latitude"])
-#LON = (df["longitude"])
-
-#iltered_data = df[df["neighbourhood"] ]
-#st.subheader('Ubicación de inmuebles en')
-#map_data = pd.DataFrame(columns=[LAT, LON])
-#st.map(map_data)
 
 
 
