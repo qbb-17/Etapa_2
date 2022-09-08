@@ -3,6 +3,7 @@ from unicodedata import numeric
 import streamlit as st
 import pandas as pd
 import numpy as np
+import plotly.express as px
 import matplotlib.pyplot as plt
 
 #--- IMPORTAMOS LOS DATOS ---#
@@ -12,8 +13,8 @@ df=pd.read_csv("clean_airbnb (1).csv", encoding= "ISO-8859-1")
 st.set_page_config(page_title="Airbnb",
                    page_icon=":busts_in_silhouette:")
 
-st.title("Análisis Airbnb")
-st.markdown("Estima el precio de renta, plusvalía ")
+st.title("Plataforma Airbnb")
+st.markdown("Esta plataforma muestra datos y gráficos de interés sobre los inmuebles Airbnb de la ciudad de México")
 
 #--- LOGO ---#
 st.sidebar.image("airbnblogo.jpg")
@@ -102,11 +103,11 @@ if (btnFilterbyroom):
 
 #Gibran
 
-histo= st.sidebar.checkbox("Distribución de precios de casas")
+histo= st.sidebar.checkbox("Distribución de precios de inmuebles")
 if histo:
     fig, ax = plt.subplots()
     ax.hist(data.price)
-    st.header("Distribución del precio de las habitaciones")
+    st.header("Distribución del precio de los inmuebles")
     st.pyplot(fig)
     st.markdown("_")
 
@@ -132,11 +133,40 @@ if graf1:
     y=data["price"]
     ax.barh(x,y)
     ax.set_ylabel("Municipio")
-    ax.set_xlabel("Precio promedio por municipio ")
-    st.header("DElegacion con el precio promedio")
+    ax.set_xlabel("Precio promedio por delegación")
+    st.header("Delegacion con el precio promedio")
     st.pyplot(fig)
     st.markdown("_")
 
+DATA_URL = ('clean_airbnb (1).csv')
+DATE_COLUMN = 'neighbourhood'
+LAT = 'latitude'
+LON = 'longitude'
+
+#st.title("Ubicaciones de las casas")
+#st.header("Casas") 
+#test = data["neighbourhood"]
+map_data = pd.DataFrame(
+    np.random.randn(1000, 2) / [50, 50] + [19.42, -99.12],
+    columns=['latitude', 'longitude'])
+st.map(map_data)
+
+
+
+#Creamos el mapa 
+#LAT = (df["latitude"])
+#LON = (df["longitude"])
+
+#iltered_data = df[df["neighbourhood"] ]
+#st.subheader('Ubicación de inmuebles en')
+#map_data = pd.DataFrame(columns=[LAT, LON])
+#st.map(map_data)
+
+st.header("Conclusiones")
+st.write("Se observa que gracias a los gráficos mostrados dentro de nuestra plataforma, podemos recabar información acerca de los inmuebles de Ciudad de México registrados con Airbnb. Podemos explorar la disftribución de precio por delegación. También podemos filtrar por rango de precio y por tipo de habitación ")
+st.write("El análisis gráfico nos indica que el rango de precios de los inmuebles se concentra en el rango 200 a los 6000 y si bien hay inmuebles de precios mucho más altos estos no son tan frecuentes")
+st.write("Observamos que el precio promedio es más cara una casa/departamento entero que una habitación privada, habitación de hotel y habitación compartida")
+st.write("Se puede notar que hay variación de precios promedio por delegación. Vemos que los inmuebles con los precios más altos se ubican en Benito Juárez, Cuauhtémoc, Miguel Hidalgo")
 
 
 

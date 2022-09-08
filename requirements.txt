@@ -3,3 +3,7 @@ altair
 pandas
 numpy
 matplotlib
+airbnblogo.jpg
+functools
+unicodedata
+plotly
